@@ -1,34 +1,39 @@
-const btnCopyAdd = document.querySelector("button[add-copy-link]");
-const inputLink = document.querySelector("input[input-link]");
+const oldInputLink = document.querySelector("input[old-input-link]");
 const btnAdd = document.querySelector("button[add-link]");
-const oldLink = document.querySelector("span[old-link]");
+const reloadAdd = document.querySelector("button[reload-link]");
 const inputNewLink = document.querySelector("input[input-new-link]");
-const newLink = document.querySelector("span[new-link]");
-
-const exitLink = document.querySelector("input[exit-link]");
-const btnCopy = document.querySelector("button[copy-link]");
-//
-inputLink.value =
-  "https://www.instagram.com/reel/CtKxQDJgjeV/?igshid=MzRlODBiNWFlZA==";
-//
-
-let link = "";
 
 btnAdd.addEventListener("click", () => {
-  oldLink.textContent = inputLink.value;
+  // push link
+  navigator.clipboard.readText().then(function (clipboardText) {
+    oldInputLink.value = clipboardText;
+  });
 
-  link = inputLink.value.split("");
+  setTimeout(() => {
+    // transform
+    let link = oldInputLink.value.split("");
+    const delLink = link.splice(8, 4, "d", "d");
+    link = link.join("");
 
-  const delLink = link.splice(8, 4, "d", "d");
+    // record new link
+    inputNewLink.value = link;
 
-  link = link.join("");
-
-  inputNewLink.value = link;
-  newLink.textContent = link;
+    // copy new link
+    navigator.clipboard.writeText(link);
+  }, 10);
 });
 
-btnCopy.addEventListener("click", clipboardCopy);
-async function clipboardCopy() {
-  let text = document.querySelector("input[input-new-link]").value;
-  await navigator.clipboard.writeText(text);
-}
+reloadAdd.addEventListener("click", () => {
+  // transform
+  let link = oldInputLink.value.split("");
+  const delLink = link.splice(8, 4, "d", "d");
+  link = link.join("");
+
+  // record new link
+  inputNewLink.value = link;
+
+  // copy new link
+  navigator.clipboard.writeText(link);
+});
+
+// https://www.instagram.com/reel/CtKxQDJgjeV/?igshid=MzRlODBiNWFlZA==
