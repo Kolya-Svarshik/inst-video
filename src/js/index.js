@@ -20,6 +20,11 @@ btnAdd.addEventListener("click", () => {
 
     // copy new link
     navigator.clipboard.writeText(link);
+
+    setTimeout(() => {
+      oldInputLink.value = "";
+      inputNewLink.value = "";
+    }, 5000);
   }, 10);
 });
 
@@ -34,6 +39,9 @@ reloadAdd.addEventListener("click", () => {
 
   // copy new link
   navigator.clipboard.writeText(link);
-});
 
-// https://www.instagram.com/reel/CtKxQDJgjeV/?igshid=MzRlODBiNWFlZA==
+  setTimeout(() => {
+    oldInputLink.value = "";
+    inputNewLink.value = "";
+  }, 5000);
+});
