@@ -35,17 +35,28 @@
 }
 
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 3px;
 }
 
-.button_one {
-  height: 60px;
-  width: 100px;
-  margin-right: 10px;
+.button:not(:last-child) {
+  margin-right: 20px;
 }
 
-.button_two {
-  height: 45px;
-  width: 45px;
+.button_cross {
+  height: 65px;
+  width: 65px;
+}
+
+.button_magic {
+  height: 80px;
+  width: 120px;
+}
+
+.button_reload {
+  height: 65px;
+  width: 65px;
 }

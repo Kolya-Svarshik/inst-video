@@ -1,12 +1,19 @@
 const oldInputLink = document.querySelector("input[old-input-link]");
+const btnClean = document.querySelector("button[clean-link]");
 const btnAdd = document.querySelector("button[add-link]");
-const reloadAdd = document.querySelector("button[reload-link]");
+const btnReload = document.querySelector("button[reload-link]");
 const inputNewLink = document.querySelector("input[input-new-link]");
 
 btnAdd.addEventListener("click", () => {
   // push link
   navigator.clipboard.readText().then(function (clipboardText) {
     oldInputLink.value = clipboardText;
+  });
+
+  btnClean.addEventListener("click", () => {
+    // clean input
+    oldInputLink.value = "";
+    inputNewLink.value = "";
   });
 
   setTimeout(() => {
@@ -20,15 +27,10 @@ btnAdd.addEventListener("click", () => {
 
     // copy new link
     navigator.clipboard.writeText(link);
-
-    setTimeout(() => {
-      oldInputLink.value = "";
-      inputNewLink.value = "";
-    }, 5000);
   }, 10);
 });
 
-reloadAdd.addEventListener("click", () => {
+btnReload.addEventListener("click", () => {
   // transform
   let link = oldInputLink.value.split("");
   const delLink = link.splice(8, 4, "d", "d");
@@ -39,9 +41,4 @@ reloadAdd.addEventListener("click", () => {
 
   // copy new link
   navigator.clipboard.writeText(link);
-
-  setTimeout(() => {
-    oldInputLink.value = "";
-    inputNewLink.value = "";
-  }, 5000);
 });
