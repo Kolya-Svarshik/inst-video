@@ -25,14 +25,20 @@ btnReload.addEventListener("click", () => {
   transformLink();
 });
 
-function transformLink() {
+const transformLink = () => {
   // link verification
   let verificationLink = oldInputLink.value.split("");
-  const delverificationLink = verificationLink.splice(25);
+  const delverificationLink = verificationLink.splice(21);
   verificationLink = verificationLink.join("");
+  switch (verificationLink) {
+    case "https://www.instagram":
+      break;
 
-  if (verificationLink !== "https://www.instagram.com") {
-    return navigator.clipboard.writeText("Це не посилання з Instagram!");
+    case "https://ddinstagram.c":
+      return (oldInputLink.value = "Посилання вже було трансформовано!");
+
+    default:
+      return (oldInputLink.value = "Це не посилання з Instagram!");
   }
 
   // transform
@@ -45,4 +51,4 @@ function transformLink() {
 
   // copy new link
   navigator.clipboard.writeText(link);
-}
+};
